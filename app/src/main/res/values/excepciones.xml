@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="base01">Ha sucedido un error procesando su solicitud, por favor intentelo de nuevo</string>
+    <string name="base02">Error de prueba</string>
+
+
+</resources>
