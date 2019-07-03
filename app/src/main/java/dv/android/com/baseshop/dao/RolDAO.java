@@ -13,12 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dv.android.com.baseshop.dto.RolDTO;
-import dv.android.com.baseshop.exception.BaseException;
 import dv.android.com.baseshop.interfaces.dao.IRolDAO;
 
 public class RolDAO implements IRolDAO {
     @Override
-    public RolDTO findByPk(RolDTO entity) throws BaseException {
+    public RolDTO findByPk(RolDTO entity) throws Exception {
         RolDTO filter = null;
         final List<RolDTO> list = new ArrayList<>();
 
@@ -49,12 +48,12 @@ public class RolDAO implements IRolDAO {
 
         }catch (Exception e){
             Log.e("Error:","RolDAO.findByPk.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 
     @Override
-    public List<RolDTO> findByAll() throws BaseException {
+    public List<RolDTO> findByAll() throws Exception {
         final List<RolDTO> list = new ArrayList<>();
 
         try{
@@ -81,7 +80,7 @@ public class RolDAO implements IRolDAO {
 
         }catch (Exception e){
             Log.e("Error:","RolDAO.findByAll.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 }

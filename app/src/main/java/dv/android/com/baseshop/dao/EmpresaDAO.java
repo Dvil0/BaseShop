@@ -13,12 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dv.android.com.baseshop.dto.EmpresaDTO;
-import dv.android.com.baseshop.exception.BaseException;
 import dv.android.com.baseshop.interfaces.dao.IEmpresaDAO;
 
 public class EmpresaDAO implements IEmpresaDAO {
     @Override
-    public EmpresaDTO findByPk(EmpresaDTO entity) throws BaseException {
+    public EmpresaDTO findByPk(EmpresaDTO entity) throws Exception {
         EmpresaDTO filter = null;
         final List<EmpresaDTO> list = new ArrayList<>();
 
@@ -49,12 +48,12 @@ public class EmpresaDAO implements IEmpresaDAO {
 
         }catch (Exception e){
             Log.e("Error:","EmpresaDAO.findByPk.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 
     @Override
-    public List<EmpresaDTO> findByAll() throws BaseException {
+    public List<EmpresaDTO> findByAll() throws Exception {
         final List<EmpresaDTO> list = new ArrayList<>();
 
         try{
@@ -81,7 +80,7 @@ public class EmpresaDAO implements IEmpresaDAO {
 
         }catch (Exception e){
             Log.e("Error:","EmpresaDAO.findByAll.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 }

@@ -13,12 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dv.android.com.baseshop.dto.VentaDTO;
-import dv.android.com.baseshop.exception.BaseException;
 import dv.android.com.baseshop.interfaces.dao.IVentaDTO;
 
 public class VentaDAO implements IVentaDTO {
     @Override
-    public VentaDTO findByPk(VentaDTO entity) throws BaseException {
+    public VentaDTO findByPk(VentaDTO entity) throws Exception {
         VentaDTO filter = null;
         final List<VentaDTO> list = new ArrayList<>();
 
@@ -49,12 +48,12 @@ public class VentaDAO implements IVentaDTO {
 
         }catch (Exception e){
             Log.e("Error:","VentaDAO.findByPk.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 
     @Override
-    public List<VentaDTO> findByCriteria(VentaDTO entity) throws BaseException {
+    public List<VentaDTO> findByCriteria(VentaDTO entity) throws Exception {
         final List<VentaDTO> dataList = new ArrayList<>();
         List<VentaDTO> filterList = null;
 
@@ -92,31 +91,31 @@ public class VentaDAO implements IVentaDTO {
             return filterList;
         }catch (Exception e){
             Log.e("Error:","VentaDAO.findByCriteria.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 
     @Override
-    public void save(VentaDTO entity) throws BaseException {
+    public void save(VentaDTO entity) throws Exception {
         try{
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = firebaseDatabase.getReference("Venta");
             databaseReference.child("venta"+entity.getIdVenta()).setValue(entity);
         }catch (Exception e){
             Log.e("Error:","VentaDAO.save.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 
     @Override
-    public void delete(VentaDTO entity) throws BaseException {
+    public void delete(VentaDTO entity) throws Exception {
         try{
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = firebaseDatabase.getReference("Venta");
             databaseReference.child("venta"+entity.getIdVenta()).removeValue();
         }catch (Exception e){
             Log.e("Error","VentaDAO.delete.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 }

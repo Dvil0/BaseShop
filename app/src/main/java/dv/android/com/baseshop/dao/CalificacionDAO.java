@@ -13,12 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dv.android.com.baseshop.dto.CalificacionDTO;
-import dv.android.com.baseshop.exception.BaseException;
 import dv.android.com.baseshop.interfaces.dao.ICalificacionDAO;
 
 public class CalificacionDAO implements ICalificacionDAO {
     @Override
-    public CalificacionDTO findByPk(CalificacionDTO entity) throws BaseException {
+    public CalificacionDTO findByPk(CalificacionDTO entity) throws Exception {
         CalificacionDTO filter = null;
         final List<CalificacionDTO> list = new ArrayList<>();
 
@@ -49,12 +48,12 @@ public class CalificacionDAO implements ICalificacionDAO {
 
         }catch (Exception e){
             Log.e("Error:","CalificacionDAO.findByPk.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 
     @Override
-    public List<CalificacionDTO> findByCriteria(CalificacionDTO entity) throws BaseException {
+    public List<CalificacionDTO> findByCriteria(CalificacionDTO entity) throws Exception {
         final List<CalificacionDTO> dataList = new ArrayList<>();
         List<CalificacionDTO> filterList = null;
 
@@ -100,31 +99,31 @@ public class CalificacionDAO implements ICalificacionDAO {
             return filterList;
         }catch (Exception e){
             Log.e("Error:","CalificacionDAO.findByCriteria.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 
     @Override
-    public void save(CalificacionDTO entity) throws BaseException {
+    public void save(CalificacionDTO entity) throws Exception {
         try{
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = firebaseDatabase.getReference("Calificacion");
             databaseReference.child("calificacion"+entity.getIdCalificacion()).setValue(entity);
         }catch (Exception e){
             Log.e("Error:","CalificacionDAO.save.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 
     @Override
-    public void delete(CalificacionDTO entity) throws BaseException {
+    public void delete(CalificacionDTO entity) throws Exception {
         try{
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = firebaseDatabase.getReference("Calificacion");
             databaseReference.child("calificacion"+entity.getIdCalificacion()).removeValue();
         }catch (Exception e){
             Log.e("Error","CalificacionDAO.delete.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 }

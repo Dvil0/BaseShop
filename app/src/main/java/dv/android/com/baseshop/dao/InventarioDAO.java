@@ -13,12 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dv.android.com.baseshop.dto.InventarioDTO;
-import dv.android.com.baseshop.exception.BaseException;
 import dv.android.com.baseshop.interfaces.dao.IInventarioDAO;
 
 public class InventarioDAO implements IInventarioDAO {
     @Override
-    public InventarioDTO findByPk(InventarioDTO entity) throws BaseException {
+    public InventarioDTO findByPk(InventarioDTO entity) throws Exception {
         InventarioDTO filter = null;
         final List<InventarioDTO> list = new ArrayList<>();
 
@@ -49,12 +48,12 @@ public class InventarioDAO implements IInventarioDAO {
 
         }catch (Exception e){
             Log.e("Error:","InventarioDAO.findByPk.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 
     @Override
-    public List<InventarioDTO> findByCriteria(InventarioDTO entity) throws BaseException {
+    public List<InventarioDTO> findByCriteria(InventarioDTO entity) throws Exception {
         final List<InventarioDTO> dataList = new ArrayList<>();
         List<InventarioDTO> filterList = null;
 
@@ -92,31 +91,31 @@ public class InventarioDAO implements IInventarioDAO {
             return filterList;
         }catch (Exception e){
             Log.e("Error:","InventarioDAO.findByCriteria.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 
     @Override
-    public void save(InventarioDTO entity) throws BaseException {
+    public void save(InventarioDTO entity) throws Exception {
         try{
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = firebaseDatabase.getReference("Inventario");
             databaseReference.child("inventario"+entity.getIdInventario()).setValue(entity);
         }catch (Exception e){
             Log.e("Error:","InventarioDAO.save.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 
     @Override
-    public void delete(InventarioDTO entity) throws BaseException {
+    public void delete(InventarioDTO entity) throws Exception {
         try{
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = firebaseDatabase.getReference("Inventario");
             databaseReference.child("inventario"+entity.getIdInventario()).removeValue();
         }catch (Exception e){
             Log.e("Error","InventarioDAO.delete.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 }

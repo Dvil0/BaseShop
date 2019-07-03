@@ -13,12 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dv.android.com.baseshop.dto.UsuarioDTO;
-import dv.android.com.baseshop.exception.BaseException;
 import dv.android.com.baseshop.interfaces.dao.IUsuarioDAO;
 
 public class UsuarioDAO implements IUsuarioDAO {
     @Override
-    public UsuarioDTO findByPk(UsuarioDTO entity) throws BaseException {
+    public UsuarioDTO findByPk(UsuarioDTO entity) throws Exception {
         UsuarioDTO filter = null;
         final List<UsuarioDTO> list = new ArrayList<>();
 
@@ -50,36 +49,36 @@ public class UsuarioDAO implements IUsuarioDAO {
 
         }catch (Exception e){
             Log.e("Error:","UsusarioDAO.findByPk.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 
     @Override
-    public void save(UsuarioDTO entity) throws BaseException {
+    public void save(UsuarioDTO entity) throws Exception {
         try{
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = firebaseDatabase.getReference("Usuario");
             databaseReference.child("usuario"+entity.getCedula()).setValue(entity);
         }catch (Exception e){
             Log.e("Error:","UsusarioDAO.save.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 
     @Override
-    public void delete(UsuarioDTO entity) throws BaseException {
+    public void delete(UsuarioDTO entity) throws Exception {
         try{
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = firebaseDatabase.getReference("Usuario");
             databaseReference.child("usuario"+entity.getCedula()).removeValue();
         }catch (Exception e){
             Log.e("Error:","UsusarioDAO.delete.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 
     @Override
-    public List<UsuarioDTO> findByCriteria(UsuarioDTO entity) throws BaseException {
+    public List<UsuarioDTO> findByCriteria(UsuarioDTO entity) throws Exception {
         final List<UsuarioDTO> dataList = new ArrayList<>();
         List<UsuarioDTO> filterList = null;
 
@@ -120,7 +119,7 @@ public class UsuarioDAO implements IUsuarioDAO {
             return filterList;
         }catch (Exception e){
             Log.e("Error:","UsuarioDAO.findByCriteria.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 }

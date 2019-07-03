@@ -13,12 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dv.android.com.baseshop.dto.ChatDTO;
-import dv.android.com.baseshop.exception.BaseException;
 import dv.android.com.baseshop.interfaces.dao.IChatDAO;
 
 public class ChatDAO implements IChatDAO {
     @Override
-    public ChatDTO findByPk(ChatDTO entity) throws BaseException {
+    public ChatDTO findByPk(ChatDTO entity) throws Exception {
         ChatDTO filter = null;
         final List<ChatDTO> list = new ArrayList<>();
 
@@ -49,12 +48,12 @@ public class ChatDAO implements IChatDAO {
 
         }catch (Exception e){
             Log.e("Error:","ChatDAO.findByPk.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 
     @Override
-    public List<ChatDTO> findByCriteria(ChatDTO entity) throws BaseException {
+    public List<ChatDTO> findByCriteria(ChatDTO entity) throws Exception {
         final List<ChatDTO> dataList = new ArrayList<>();
         List<ChatDTO> filterList = null;
 
@@ -100,31 +99,31 @@ public class ChatDAO implements IChatDAO {
             return filterList;
         }catch (Exception e){
             Log.e("Error:","ChatDAO.findByCriteria.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 
     @Override
-    public void save(ChatDTO entity) throws BaseException {
+    public void save(ChatDTO entity) throws Exception {
         try{
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = firebaseDatabase.getReference("Chat");
             databaseReference.child("chat"+entity.getIdChat()).setValue(entity);
         }catch (Exception e){
             Log.e("Error:","ChatDAO.save.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 
     @Override
-    public void delete(ChatDTO entity) throws BaseException {
+    public void delete(ChatDTO entity) throws Exception {
         try{
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = firebaseDatabase.getReference("Chat");
             databaseReference.child("chat"+entity.getIdChat()).removeValue();
         }catch (Exception e){
             Log.e("Error","ChatDAO.delete.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 }

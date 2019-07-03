@@ -13,12 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dv.android.com.baseshop.dto.NotificacionDTO;
-import dv.android.com.baseshop.exception.BaseException;
 import dv.android.com.baseshop.interfaces.dao.INotificacionDAO;
 
 public class NotificacionDAO implements INotificacionDAO {
     @Override
-    public NotificacionDTO findByPk(NotificacionDTO entity) throws BaseException {
+    public NotificacionDTO findByPk(NotificacionDTO entity) throws Exception {
         NotificacionDTO filter = null;
         final List<NotificacionDTO> list = new ArrayList<>();
 
@@ -49,12 +48,12 @@ public class NotificacionDAO implements INotificacionDAO {
 
         }catch (Exception e){
             Log.e("Error:","NotificacionDAO.findByPk.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 
     @Override
-    public List<NotificacionDTO> findByCriteria(NotificacionDTO entity) throws BaseException {
+    public List<NotificacionDTO> findByCriteria(NotificacionDTO entity) throws Exception {
         final List<NotificacionDTO> dataList = new ArrayList<>();
         List<NotificacionDTO> filterList = null;
 
@@ -98,31 +97,31 @@ public class NotificacionDAO implements INotificacionDAO {
             return filterList;
         }catch (Exception e){
             Log.e("Error:","NotificacionDAO.findByCriteria.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 
     @Override
-    public void save(NotificacionDTO entity) throws BaseException {
+    public void save(NotificacionDTO entity) throws Exception {
         try{
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = firebaseDatabase.getReference("Notificacion");
             databaseReference.child("notificacion"+entity.getIdNotificacion()).setValue(entity);
         }catch (Exception e){
             Log.e("Error:","NotificacionDAO.save.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 
     @Override
-    public void delete(NotificacionDTO entity) throws BaseException {
+    public void delete(NotificacionDTO entity) throws Exception {
         try{
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = firebaseDatabase.getReference("Notificacion");
             databaseReference.child("notificacion"+entity.getIdNotificacion()).removeValue();
         }catch (Exception e){
             Log.e("Error","NotificacionDAO.delete.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 }

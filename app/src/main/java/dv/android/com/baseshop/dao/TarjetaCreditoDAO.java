@@ -13,12 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dv.android.com.baseshop.dto.TarjetaCreditoDTO;
-import dv.android.com.baseshop.exception.BaseException;
 import dv.android.com.baseshop.interfaces.dao.ITarjetaCreditoDAO;
 
 public class TarjetaCreditoDAO implements ITarjetaCreditoDAO {
     @Override
-    public TarjetaCreditoDTO findByPk(TarjetaCreditoDTO entity) throws BaseException {
+    public TarjetaCreditoDTO findByPk(TarjetaCreditoDTO entity) throws Exception {
         TarjetaCreditoDTO filter = null;
         final List<TarjetaCreditoDTO> list = new ArrayList<>();
 
@@ -49,12 +48,12 @@ public class TarjetaCreditoDAO implements ITarjetaCreditoDAO {
 
         }catch (Exception e){
             Log.e("Error:","TarjetaCreditoDAO.findByPk.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 
     @Override
-    public List<TarjetaCreditoDTO> findByCriteria(TarjetaCreditoDTO entity) throws BaseException {
+    public List<TarjetaCreditoDTO> findByCriteria(TarjetaCreditoDTO entity) throws Exception {
         final List<TarjetaCreditoDTO> dataList = new ArrayList<>();
         List<TarjetaCreditoDTO> filterList = null;
 
@@ -100,31 +99,31 @@ public class TarjetaCreditoDAO implements ITarjetaCreditoDAO {
             return filterList;
         }catch (Exception e){
             Log.e("Error:","TarjetaCreditoDAO.findByCriteria.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 
     @Override
-    public void save(TarjetaCreditoDTO entity) throws BaseException {
+    public void save(TarjetaCreditoDTO entity) throws Exception {
         try{
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = firebaseDatabase.getReference("TarjetaCredito");
             databaseReference.child("tarjetaCredito"+entity.getIdTarjetaCredito()).setValue(entity);
         }catch (Exception e){
             Log.e("Error:","TarjetaCreditoDAO.save.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 
     @Override
-    public void delete(TarjetaCreditoDTO entity) throws BaseException {
+    public void delete(TarjetaCreditoDTO entity) throws Exception {
         try{
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = firebaseDatabase.getReference("TarjetaCredito");
             databaseReference.child("tarjetaCredito"+entity.getIdTarjetaCredito()).removeValue();
         }catch (Exception e){
             Log.e("Error","TarjetaCreditoDAO.delete.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 }

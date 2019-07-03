@@ -13,12 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dv.android.com.baseshop.dto.ParametroDTO;
-import dv.android.com.baseshop.exception.BaseException;
 import dv.android.com.baseshop.interfaces.dao.IParametroDAO;
 
 public class ParametroDAO implements IParametroDAO {
     @Override
-    public ParametroDTO findByPk(ParametroDTO entity) throws BaseException {
+    public ParametroDTO findByPk(ParametroDTO entity) throws Exception {
         ParametroDTO filter = null;
         final List<ParametroDTO> list = new ArrayList<>();
 
@@ -49,12 +48,12 @@ public class ParametroDAO implements IParametroDAO {
 
         }catch (Exception e){
             Log.e("Error:","Parametro.findByPk.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 
     @Override
-    public List<ParametroDTO> findByAll() throws BaseException {
+    public List<ParametroDTO> findByAll() throws Exception {
         final List<ParametroDTO> list = new ArrayList<>();
 
         try{
@@ -81,7 +80,7 @@ public class ParametroDAO implements IParametroDAO {
 
         }catch (Exception e){
             Log.e("Error:","{ParametroDAO.findByAll.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 }

@@ -13,12 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dv.android.com.baseshop.dto.MensajeDTO;
-import dv.android.com.baseshop.exception.BaseException;
 import dv.android.com.baseshop.interfaces.dao.IMensajesDAO;
 
 public class MensajeDAO implements IMensajesDAO {
     @Override
-    public MensajeDTO findByPk(MensajeDTO entity) throws BaseException {
+    public MensajeDTO findByPk(MensajeDTO entity) throws Exception {
         MensajeDTO filter = null;
         final List<MensajeDTO> list = new ArrayList<>();
 
@@ -49,12 +48,12 @@ public class MensajeDAO implements IMensajesDAO {
 
         }catch (Exception e){
             Log.e("Error:","MensajeDAO.findByPk.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 
     @Override
-    public List<MensajeDTO> findByCriteria(MensajeDTO entity) throws BaseException {
+    public List<MensajeDTO> findByCriteria(MensajeDTO entity) throws Exception {
         final List<MensajeDTO> dataList = new ArrayList<>();
         List<MensajeDTO> filterList = null;
 
@@ -95,31 +94,31 @@ public class MensajeDAO implements IMensajesDAO {
             return filterList;
         }catch (Exception e){
             Log.e("Error:","MensajeDAO.findByCriteria.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 
     @Override
-    public void save(MensajeDTO entity) throws BaseException {
+    public void save(MensajeDTO entity) throws Exception {
         try{
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = firebaseDatabase.getReference("Mensaje");
             databaseReference.child("mensaje"+entity.getIdChat()).setValue(entity);
         }catch (Exception e){
             Log.e("Error:","MensajeDAO.save.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 
     @Override
-    public void delete(MensajeDTO entity) throws BaseException {
+    public void delete(MensajeDTO entity) throws Exception {
         try{
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = firebaseDatabase.getReference("Mensaje");
             databaseReference.child("mensaje"+entity.getIdChat()).removeValue();
         }catch (Exception e){
             Log.e("Error","MensajeDAO.delete.causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            throw e;
         }
     }
 }
