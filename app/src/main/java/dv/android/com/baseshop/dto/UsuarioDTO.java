@@ -18,6 +18,7 @@ public class UsuarioDTO {
     private String usuarioCrea;
     private String fechaCreacion;
     private String imagenPerfil;
+    private String password;
 
     //Getter and Setter Methods.
     public Long getIdUsuario() {
@@ -154,5 +155,13 @@ public class UsuarioDTO {
 
     public void setImagenPerfil(String imagenPerfil) {
         this.imagenPerfil = imagenPerfil;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

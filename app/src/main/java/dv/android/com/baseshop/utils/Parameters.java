@@ -5,6 +5,8 @@ public class Parameters {
     //Estados utilizados en la aplicacion
     private static final String ACTIVO = "A";
     private static final String INACTIVO = "I";
+    private static final String YES = "Y";
+    private static final String NO = "N";
 
     /**
      * Enum de la tabla Parametro
