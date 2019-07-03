@@ -13,14 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dv.android.com.baseshop.dto.ProductoDTO;
-import dv.android.com.baseshop.exception.BaseException;
 import dv.android.com.baseshop.interfaces.dao.IProductoDAO;
 
 public class ProductoDAO implements IProductoDAO {
     @Override
-    public ProductoDTO findByPk(ProductoDTO entity) throws BaseException {
+    public ProductoDTO findByPk(ProductoDTO entity) throws Exception {
         ProductoDTO filter = null;
-        final List<ProductoDTO> list = new ArrayList<ProductoDTO>();
+        final List<ProductoDTO> list = new ArrayList<>();
 
         try{
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -32,67 +31,54 @@ public class ProductoDAO implements IProductoDAO {
                     new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            //filter = dataSnapshot.getValue(UsuarioDTO.class);
                             list.add(dataSnapshot.getValue(ProductoDTO.class));
                         }
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
-                            Log.e("findByPk.","causa: "+databaseError.getMessage());
+                            Log.e("Error:","ProductoDAO.findByPk.causa: "+databaseError.getMessage());
                         }
                     }
             );
 
-            if(list!=null && !list.isEmpty()){
+            if(!list.isEmpty()){
                 filter = list.get(0);
             }
             return filter;
 
         }catch (Exception e){
-            Log.e("ProductoDAO.findByPk.","causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            Log.e("Error:","ProductoDAO.findByPk.causa: "+e.getMessage());
+            throw e;
         }
     }
 
     @Override
-    public void create(ProductoDTO entity) throws BaseException {
+    public void save(ProductoDTO entity) throws Exception {
         try{
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = firebaseDatabase.getReference("Producto");
             databaseReference.child("producto"+entity.getIdProducto()).setValue(entity);
         }catch (Exception e){
-            Log.e("ProductoDAO.create.","causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            Log.e("Error:","ProductoDAO.save.causa: "+e.getMessage());
+            throw e;
         }
     }
 
     @Override
-    public void update(ProductoDTO entity) throws BaseException {
-        try{
-            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-            DatabaseReference databaseReference = firebaseDatabase.getReference("Producto");
-            databaseReference.child("producto"+entity.getIdProducto()).setValue(entity);
-        }catch (Exception e){
-            Log.e("ProductoDAO.update.","causa: "+e.getMessage());
-            throw new BaseException("base03",null);
-        }
-    }
-
-    @Override
-    public void delete(ProductoDTO entity) throws BaseException {
+    public void delete(ProductoDTO entity) throws Exception {
         try{
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = firebaseDatabase.getReference("Producto");
             databaseReference.child("producto"+entity.getIdProducto()).removeValue();
         }catch (Exception e){
-            Log.e("ProductoDAO.delete.","causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            Log.e("Error","ProductoDAO.delete.causa: "+e.getMessage());
+            throw e;
         }
     }
 
     @Override
-    public List<ProductoDTO> findByCriteria(ProductoDTO entity) throws BaseException {
-        final List<ProductoDTO> dataList = new ArrayList<ProductoDTO>();
+    public List<ProductoDTO> findByCriteria(ProductoDTO entity) throws Exception {
+        final List<ProductoDTO> dataList = new ArrayList<>();
         List<ProductoDTO> filterList = null;
 
         try{
@@ -109,13 +95,13 @@ public class ProductoDAO implements IProductoDAO {
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
-                            Log.e("findByCriteria.","causa: "+databaseError.getMessage());
+                            Log.e("Error:","ProductoDAO.findByCriteria.causa: "+databaseError.getMessage());
                         }
                     }
             );
 
             if(!dataList.isEmpty()){
-                filterList =  new ArrayList<ProductoDTO>();
+                filterList =  new ArrayList<>();
 
                 for(ProductoDTO obj : dataList){
 
@@ -131,8 +117,8 @@ public class ProductoDAO implements IProductoDAO {
             }
             return filterList;
         }catch (Exception e){
-            Log.e("ProductoDAO.findByC.",""+e.getMessage());
-            throw new BaseException("base03",null);
+            Log.e("Error:","ProductoDAO.findByCriteria.causa: "+e.getMessage());
+            throw e;
         }
     }
 }

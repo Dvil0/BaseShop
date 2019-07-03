@@ -13,14 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dv.android.com.baseshop.dto.UsuarioDTO;
-import dv.android.com.baseshop.exception.BaseException;
 import dv.android.com.baseshop.interfaces.dao.IUsuarioDAO;
 
 public class UsuarioDAO implements IUsuarioDAO {
     @Override
-    public UsuarioDTO findByPk(UsuarioDTO entity) throws BaseException {
+    public UsuarioDTO findByPk(UsuarioDTO entity) throws Exception {
         UsuarioDTO filter = null;
-        final List<UsuarioDTO> list = new ArrayList<UsuarioDTO>();
+        final List<UsuarioDTO> list = new ArrayList<>();
 
         try{
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -38,61 +37,49 @@ public class UsuarioDAO implements IUsuarioDAO {
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
-                            Log.e("findByPk.","causa: "+databaseError.getMessage());
+                            Log.e("Error:","UsuarioDTO.findByPk.causa: "+databaseError.getMessage());
                         }
                     }
             );
 
-            if(list!=null && !list.isEmpty()){
+            if(!list.isEmpty()){
                 filter = list.get(0);
             }
             return filter;
 
         }catch (Exception e){
-            Log.e("UsusarioDAO.findByPk.","causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            Log.e("Error:","UsusarioDAO.findByPk.causa: "+e.getMessage());
+            throw e;
         }
     }
 
     @Override
-    public void create(UsuarioDTO entity) throws BaseException {
+    public void save(UsuarioDTO entity) throws Exception {
         try{
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = firebaseDatabase.getReference("Usuario");
             databaseReference.child("usuario"+entity.getCedula()).setValue(entity);
         }catch (Exception e){
-            Log.e("UsusarioDAO.create.","causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            Log.e("Error:","UsusarioDAO.save.causa: "+e.getMessage());
+            throw e;
         }
     }
 
     @Override
-    public void update(UsuarioDTO entity) throws BaseException {
-        try{
-            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-            DatabaseReference databaseReference = firebaseDatabase.getReference("Usuario");
-            databaseReference.child("usuario"+entity.getCedula()).setValue(entity);
-        }catch (Exception e){
-            Log.e("UsusarioDAO.update.","causa: "+e.getMessage());
-            throw new BaseException("base03",null);
-        }
-    }
-
-    @Override
-    public void delete(UsuarioDTO entity) throws BaseException {
+    public void delete(UsuarioDTO entity) throws Exception {
         try{
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = firebaseDatabase.getReference("Usuario");
             databaseReference.child("usuario"+entity.getCedula()).removeValue();
         }catch (Exception e){
-            Log.e("UsusarioDAO.delete.","causa: "+e.getMessage());
-            throw new BaseException("base03",null);
+            Log.e("Error:","UsusarioDAO.delete.causa: "+e.getMessage());
+            throw e;
         }
     }
 
     @Override
-    public List<UsuarioDTO> findByCriteria(UsuarioDTO entity) throws BaseException {
-        final List<UsuarioDTO> dataList = new ArrayList<UsuarioDTO>();
+    public List<UsuarioDTO> findByCriteria(UsuarioDTO entity) throws Exception {
+        final List<UsuarioDTO> dataList = new ArrayList<>();
         List<UsuarioDTO> filterList = null;
 
         try{
@@ -109,13 +96,13 @@ public class UsuarioDAO implements IUsuarioDAO {
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
-                            Log.e("findByCriteria.","causa: "+databaseError.getMessage());
+                            Log.e("Error","UsuarioDAO.findByCriteria.causa: "+databaseError.getMessage());
                         }
                     }
             );
 
             if(!dataList.isEmpty()){
-                filterList =  new ArrayList<UsuarioDTO>();
+                filterList =  new ArrayList<>();
 
                 for(UsuarioDTO obj : dataList){
 
@@ -131,8 +118,8 @@ public class UsuarioDAO implements IUsuarioDAO {
             }
             return filterList;
         }catch (Exception e){
-            Log.e("UsusarioDAO.findByC.",""+e.getMessage());
-            throw new BaseException("base03",null);
+            Log.e("Error:","UsuarioDAO.findByCriteria.causa: "+e.getMessage());
+            throw e;
         }
     }
 }
