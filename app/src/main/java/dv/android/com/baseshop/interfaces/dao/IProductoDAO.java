@@ -6,9 +6,8 @@ import dv.android.com.baseshop.dto.ProductoDTO;
 import dv.android.com.baseshop.exception.BaseException;
 
 public interface IProductoDAO {
-    public ProductoDTO findByPk(ProductoDTO entity)throws BaseException;
-    public void create(ProductoDTO entity)throws BaseException;
-    public void update(ProductoDTO entity)throws BaseException;
-    public void delete(ProductoDTO entity)throws BaseException;
-    public List<ProductoDTO> findByCriteria(ProductoDTO entity) throws BaseException;
+    ProductoDTO findByPk(ProductoDTO entity)throws BaseException;
+    void save(ProductoDTO entity)throws BaseException;
+    void delete(ProductoDTO entity)throws BaseException;
+    List<ProductoDTO> findByCriteria(ProductoDTO entity) throws BaseException;
 }

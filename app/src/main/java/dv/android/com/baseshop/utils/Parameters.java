@@ -25,4 +25,22 @@ public class Parameters {
             return this.value;
         }
     }
+
+    /**
+     * Enum de la tabla Rol
+     */
+    public enum RolTable{
+
+        administrador(1L), vendedor(2L);
+
+        private Long value;
+
+        RolTable(Long value){
+            this.value = value;
+        }
+
+        public Long getValue(){
+            return this.value;
+        }
+    }
 }
