@@ -78,7 +78,7 @@ public class VentaDAO implements IVentaDTO {
             );
 
             if(!dataList.isEmpty()){
-                filterList =  new ArrayList<VentaDTO>();
+                filterList =  new ArrayList<>();
 
                 for(VentaDTO obj : dataList){
 

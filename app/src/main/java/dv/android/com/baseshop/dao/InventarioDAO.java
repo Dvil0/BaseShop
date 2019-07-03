@@ -78,7 +78,7 @@ public class InventarioDAO implements IInventarioDAO {
             );
 
             if(!dataList.isEmpty()){
-                filterList =  new ArrayList<InventarioDTO>();
+                filterList =  new ArrayList<>();
 
                 for(InventarioDTO obj : dataList){
 

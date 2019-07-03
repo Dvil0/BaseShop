@@ -103,7 +103,7 @@ public class UsuarioDAO implements IUsuarioDAO {
             );
 
             if(!dataList.isEmpty()){
-                filterList =  new ArrayList<UsuarioDTO>();
+                filterList =  new ArrayList<>();
 
                 for(UsuarioDTO obj : dataList){
 

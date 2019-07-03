@@ -102,7 +102,7 @@ public class ProductoDAO implements IProductoDAO {
             );
 
             if(!dataList.isEmpty()){
-                filterList =  new ArrayList<ProductoDTO>();
+                filterList =  new ArrayList<>();
 
                 for(ProductoDTO obj : dataList){
 
