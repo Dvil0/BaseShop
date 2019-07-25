@@ -2,7 +2,7 @@ package dv.android.com.baseshop.interfaces.dao;
 
 import java.util.List;
 
-import dv.android.com.baseshop.dto.InventarioDTO;
+import dv.android.com.baseshop.entities.InventarioDTO;
 
 public interface IInventarioDAO {
     InventarioDTO findByPk(InventarioDTO entity)throws Exception;

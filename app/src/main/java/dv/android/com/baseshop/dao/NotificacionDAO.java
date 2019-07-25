@@ -11,7 +11,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import dv.android.com.baseshop.dto.NotificacionDTO;
+import dv.android.com.baseshop.entities.NotificacionDTO;
 import dv.android.com.baseshop.interfaces.dao.INotificacionDAO;
 
 public class NotificacionDAO implements INotificacionDAO {

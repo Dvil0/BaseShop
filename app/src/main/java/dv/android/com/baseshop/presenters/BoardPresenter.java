@@ -4,7 +4,7 @@ import android.util.Log;
 
 import java.util.List;
 
-import dv.android.com.baseshop.dto.ProductoDTO;
+import dv.android.com.baseshop.entities.ProductoDTO;
 import dv.android.com.baseshop.exception.BaseException;
 import dv.android.com.baseshop.interfaces.listeners.IOnBoardListener;
 import dv.android.com.baseshop.interfaces.models.IBoardModel;

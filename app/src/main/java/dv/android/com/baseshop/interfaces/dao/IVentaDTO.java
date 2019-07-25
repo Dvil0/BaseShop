@@ -2,7 +2,7 @@ package dv.android.com.baseshop.interfaces.dao;
 
 import java.util.List;
 
-import dv.android.com.baseshop.dto.VentaDTO;
+import dv.android.com.baseshop.entities.VentaDTO;
 
 public interface IVentaDTO {
     VentaDTO findByPk(VentaDTO entity)throws Exception;

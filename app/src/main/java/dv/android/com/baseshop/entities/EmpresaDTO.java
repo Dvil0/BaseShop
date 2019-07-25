@@ -1,21 +1,29 @@
-package dv.android.com.baseshop.dto;
+package dv.android.com.baseshop.entities;
 
-public class ParametroDTO {
-    private Long idParametro;
+public class EmpresaDTO {
+    private Long idEmpresa;
+    private String nit;
     private String nombre;
     private String descripcion;
-    private String valor;
     private String estado;
     private String usuarioCrea;
     private String fechaCreacion;
 
     //Getter and Setter Methods.
-    public Long getIdParametro() {
-        return idParametro;
+    public Long getIdEmpresa() {
+        return idEmpresa;
     }
 
-    public void setIdParametro(Long idParametro) {
-        this.idParametro = idParametro;
+    public void setIdEmpresa(Long idEmpresa) {
+        this.idEmpresa = idEmpresa;
+    }
+
+    public String getNit() {
+        return nit;
+    }
+
+    public void setNit(String nit) {
+        this.nit = nit;
     }
 
     public String getNombre() {
@@ -32,14 +40,6 @@ public class ParametroDTO {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public String getValor() {
-        return valor;
-    }
-
-    public void setValor(String valor) {
-        this.valor = valor;
     }
 
     public String getEstado() {

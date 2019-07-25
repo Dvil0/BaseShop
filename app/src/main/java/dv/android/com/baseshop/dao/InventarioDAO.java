@@ -11,7 +11,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import dv.android.com.baseshop.dto.InventarioDTO;
+import dv.android.com.baseshop.entities.InventarioDTO;
 import dv.android.com.baseshop.interfaces.dao.IInventarioDAO;
 
 public class InventarioDAO implements IInventarioDAO {

@@ -3,7 +3,8 @@
 
     <string name="base01">Ha sucedido un error procesando su solicitud, por favor intentelo de nuevo</string>
     <string name="base02">Error de prueba</string>
-    <string name="bs001">No se encontraron productos para mostrar.</string>
+    <string name="ws001">No se encontraron productos para mostrar.</string>
+    <string name="ws002">No se puede adicionar si no esta disponible el producto.</string>
 
 
 </resources>

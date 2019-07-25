@@ -11,7 +11,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import dv.android.com.baseshop.dto.ChatDTO;
+import dv.android.com.baseshop.entities.ChatDTO;
 import dv.android.com.baseshop.interfaces.dao.IChatDAO;
 
 public class ChatDAO implements IChatDAO {

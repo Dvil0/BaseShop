@@ -2,6 +2,7 @@ package dv.android.com.baseshop.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -9,17 +10,21 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.w3c.dom.Text;
-
 import java.text.DecimalFormat;
 
 import dv.android.com.baseshop.R;
-import dv.android.com.baseshop.dto.ProductoDTO;
+import dv.android.com.baseshop.entities.ProductoDTO;
+import dv.android.com.baseshop.entities.UsuarioDTO;
+import dv.android.com.baseshop.interfaces.presenters.IProductPresenter;
 import dv.android.com.baseshop.interfaces.views.IProductActivity;
+import dv.android.com.baseshop.presenters.ProductPresenter;
+import dv.android.com.baseshop.utils.Parameters;
 
 public class ProductActivity extends AppCompatActivity implements IProductActivity {
 
+    private IProductPresenter productPresenter;
     private ProductoDTO productSelected;
+    private UsuarioDTO usuarioSesion;
     private TextView txtTitle;
     private TextView txtDescription;
     private TextView txtVendedor;
@@ -35,7 +40,10 @@ public class ProductActivity extends AppCompatActivity implements IProductActivi
         Intent intent = getIntent();
         if(intent!=null){
 
+            productPresenter = new ProductPresenter(this);
             productSelected = (ProductoDTO) intent.getSerializableExtra("product");
+            usuarioSesion = (UsuarioDTO) intent.getSerializableExtra("user");
+
             txtTitle = findViewById(R.id.txtTitle);
             txtDescription = findViewById(R.id.txtDescription);
             txtVendedor = findViewById(R.id.txtUserCrea);
@@ -46,7 +54,7 @@ public class ProductActivity extends AppCompatActivity implements IProductActivi
             txtTitle.setText(productSelected.getNombre());
             txtDescription.setText(productSelected.getDescripcion());
             txtVendedor.setText(productSelected.getUsuarioCrea());
-            txtEstado.setText(productSelected.getEstado().compareTo("A")==0?"Disponible":"No disponible");
+            txtEstado.setText(productSelected.getEstado().compareTo(Parameters.DISPONIBLE)==0?"Disponible":"No disponible");
 
             //Se convierte el formato del precio.
             DecimalFormat format = new DecimalFormat("#,##0");
@@ -72,7 +80,7 @@ public class ProductActivity extends AppCompatActivity implements IProductActivi
      * @author Dv
      */
     public void addToCar(View view){
-        //TODO DV: Implementar.
+        productPresenter.addToCar(productSelected, usuarioSesion);
     }
 
     @Override
@@ -83,5 +91,15 @@ public class ProductActivity extends AppCompatActivity implements IProductActivi
     @Override
     public void errorMessage(String message) {
         Toast.makeText(this,message,Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public String getTelImei() {
+        String deviceUniqueId = null;
+
+        deviceUniqueId = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
+
+        return deviceUniqueId;
+
     }
 }

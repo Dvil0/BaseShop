@@ -11,7 +11,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import dv.android.com.baseshop.dto.MensajeDTO;
+import dv.android.com.baseshop.entities.MensajeDTO;
 import dv.android.com.baseshop.interfaces.dao.IMensajesDAO;
 
 public class MensajeDAO implements IMensajesDAO {

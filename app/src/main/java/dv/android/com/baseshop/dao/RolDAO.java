@@ -11,7 +11,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import dv.android.com.baseshop.dto.RolDTO;
+import dv.android.com.baseshop.entities.RolDTO;
 import dv.android.com.baseshop.interfaces.dao.IRolDAO;
 
 public class RolDAO implements IRolDAO {

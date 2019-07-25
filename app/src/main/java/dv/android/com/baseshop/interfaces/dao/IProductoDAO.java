@@ -2,7 +2,7 @@ package dv.android.com.baseshop.interfaces.dao;
 
 import java.util.List;
 
-import dv.android.com.baseshop.dto.ProductoDTO;
+import dv.android.com.baseshop.entities.ProductoDTO;
 import dv.android.com.baseshop.interfaces.listeners.IOnBoardListener;
 
 public interface IProductoDAO {

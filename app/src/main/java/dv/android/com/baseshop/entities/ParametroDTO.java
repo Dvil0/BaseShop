@@ -1,25 +1,21 @@
-package dv.android.com.baseshop.dto;
+package dv.android.com.baseshop.entities;
 
-import java.io.Serializable;
-
-@SuppressWarnings("serial")
-public class ProductoDTO implements Serializable {
-    private Long idProducto;
+public class ParametroDTO {
+    private Long idParametro;
     private String nombre;
     private String descripcion;
-    private Long idTipoProducto;
+    private String valor;
     private String estado;
-    private Long precio;
     private String usuarioCrea;
     private String fechaCreacion;
 
-//Getter and Setter Methods.
-    public Long getIdProducto() {
-        return idProducto;
+    //Getter and Setter Methods.
+    public Long getIdParametro() {
+        return idParametro;
     }
 
-    public void setIdProducto(Long idProducto) {
-        this.idProducto = idProducto;
+    public void setIdParametro(Long idParametro) {
+        this.idParametro = idParametro;
     }
 
     public String getNombre() {
@@ -38,12 +34,12 @@ public class ProductoDTO implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public Long getIdTipoProducto() {
-        return idTipoProducto;
+    public String getValor() {
+        return valor;
     }
 
-    public void setIdTipoProducto(Long idTipoProducto) {
-        this.idTipoProducto = idTipoProducto;
+    public void setValor(String valor) {
+        this.valor = valor;
     }
 
     public String getEstado() {
@@ -68,13 +64,5 @@ public class ProductoDTO implements Serializable {
 
     public void setFechaCreacion(String fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
-    }
-
-    public Long getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(Long precio) {
-        this.precio = precio;
     }
 }

@@ -2,10 +2,8 @@ package dv.android.com.baseshop.interfaces.listeners;
 
 import java.util.List;
 
-import dv.android.com.baseshop.entities.ProductoDTO;
-
-public interface IOnBoardListener {
+public interface IOnProductListener {
     void sucessMessage(String message);
     void errorMessage(String message);
-    void setItemsProductsFragment(List<ProductoDTO> productos);
+    String getTelImei();
 }

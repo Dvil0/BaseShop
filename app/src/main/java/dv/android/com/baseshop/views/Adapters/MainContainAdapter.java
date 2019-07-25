@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import dv.android.com.baseshop.R;
-import dv.android.com.baseshop.dto.ProductoDTO;
+import dv.android.com.baseshop.entities.ProductoDTO;
 
 public class MainContainAdapter extends RecyclerView.Adapter<MainContainAdapter.ViewHolderDatos> {
 

@@ -7,7 +7,7 @@ import java.util.List;
 import dv.android.com.baseshop.R;
 import dv.android.com.baseshop.dao.BaseExceptionDAO;
 import dv.android.com.baseshop.dao.ProductoDAO;
-import dv.android.com.baseshop.dto.ProductoDTO;
+import dv.android.com.baseshop.entities.ProductoDTO;
 import dv.android.com.baseshop.exception.BaseException;
 import dv.android.com.baseshop.interfaces.dao.IBaseExceptionDAO;
 import dv.android.com.baseshop.interfaces.dao.IProductoDAO;
@@ -33,7 +33,7 @@ public class BoardModel implements IBoardModel {
 
             //Valida que la lista no este vacia.
             if(list==null || list.isEmpty()){
-                throw new BaseException(baseExcepcionDao.getMessage(R.string.bs001), null);
+                throw new BaseException(baseExcepcionDao.getMessage(R.string.ws001), null);
             }
 
             return list;

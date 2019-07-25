@@ -11,7 +11,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import dv.android.com.baseshop.dto.TarjetaCreditoDTO;
+import dv.android.com.baseshop.entities.TarjetaCreditoDTO;
 import dv.android.com.baseshop.interfaces.dao.ITarjetaCreditoDAO;
 
 public class TarjetaCreditoDAO implements ITarjetaCreditoDAO {

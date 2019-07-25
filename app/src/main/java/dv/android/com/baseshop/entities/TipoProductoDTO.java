@@ -1,7 +1,7 @@
-package dv.android.com.baseshop.dto;
+package dv.android.com.baseshop.entities;
 
-public class TipoUsuarioDTO {
-    private Long idTipoUsuario;
+public class TipoProductoDTO {
+    private Long idTipoProducto;
     private String nombre;
     private String descripcion;
     private String estado;
@@ -9,12 +9,12 @@ public class TipoUsuarioDTO {
     private String fechaCreacion;
 
     //Getter and Setter Methods.
-    public Long getIdTipoUsuario() {
-        return idTipoUsuario;
+    public Long getIdTipoProducto() {
+        return idTipoProducto;
     }
 
-    public void setIdTipoUsuario(Long idTipoUsuario) {
-        this.idTipoUsuario = idTipoUsuario;
+    public void setIdTipoProducto(Long idTipoProducto) {
+        this.idTipoProducto = idTipoProducto;
     }
 
     public String getNombre() {

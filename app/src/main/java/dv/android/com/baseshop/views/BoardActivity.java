@@ -3,20 +3,17 @@ package dv.android.com.baseshop.views;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import dv.android.com.baseshop.R;
-import dv.android.com.baseshop.dto.ProductoDTO;
+import dv.android.com.baseshop.entities.ProductoDTO;
 import dv.android.com.baseshop.interfaces.presenters.IBoardPresenter;
 import dv.android.com.baseshop.interfaces.views.IBoardActivity;
 import dv.android.com.baseshop.presenters.BoardPresenter;

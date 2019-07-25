@@ -3,10 +3,10 @@ package dv.android.com.baseshop.utils;
 public class Parameters {
 
     //Estados utilizados en la aplicacion
-    private static final String ACTIVO = "A";
-    private static final String INACTIVO = "I";
-    private static final String YES = "Y";
-    private static final String NO = "N";
+    public static final String DISPONIBLE = "A";
+    public static final String NO_DISPONIBLE = "I";
+    public static final String YES = "Y";
+    public static final String NO = "N";
 
     /**
      * Enum de la tabla Parametro

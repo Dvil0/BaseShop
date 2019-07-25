@@ -12,7 +12,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 import dv.android.com.baseshop.R;
-import dv.android.com.baseshop.dto.ProductoDTO;
+import dv.android.com.baseshop.entities.ProductoDTO;
 
 public class ItemProductsAdapter extends RecyclerView.Adapter<ItemProductsAdapter.ViewHolderDatos>
     implements View.OnClickListener{

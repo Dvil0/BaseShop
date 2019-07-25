@@ -11,7 +11,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import dv.android.com.baseshop.dto.TipoProductoDTO;
+import dv.android.com.baseshop.entities.TipoProductoDTO;
 import dv.android.com.baseshop.interfaces.dao.ITipoProductoDAO;
 
 public class TipoProductoDAO implements ITipoProductoDAO {

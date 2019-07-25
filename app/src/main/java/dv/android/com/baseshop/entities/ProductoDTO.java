@@ -1,29 +1,25 @@
-package dv.android.com.baseshop.dto;
+package dv.android.com.baseshop.entities;
 
-public class EmpresaDTO {
-    private Long idEmpresa;
-    private String nit;
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class ProductoDTO implements Serializable {
+    private Long idProducto;
     private String nombre;
     private String descripcion;
+    private Long idTipoProducto;
     private String estado;
+    private Long precio;
     private String usuarioCrea;
     private String fechaCreacion;
 
-    //Getter and Setter Methods.
-    public Long getIdEmpresa() {
-        return idEmpresa;
+//Getter and Setter Methods.
+    public Long getIdProducto() {
+        return idProducto;
     }
 
-    public void setIdEmpresa(Long idEmpresa) {
-        this.idEmpresa = idEmpresa;
-    }
-
-    public String getNit() {
-        return nit;
-    }
-
-    public void setNit(String nit) {
-        this.nit = nit;
+    public void setIdProducto(Long idProducto) {
+        this.idProducto = idProducto;
     }
 
     public String getNombre() {
@@ -40,6 +36,14 @@ public class EmpresaDTO {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public Long getIdTipoProducto() {
+        return idTipoProducto;
+    }
+
+    public void setIdTipoProducto(Long idTipoProducto) {
+        this.idTipoProducto = idTipoProducto;
     }
 
     public String getEstado() {
@@ -64,5 +68,13 @@ public class EmpresaDTO {
 
     public void setFechaCreacion(String fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
+    }
+
+    public Long getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Long precio) {
+        this.precio = precio;
     }
 }

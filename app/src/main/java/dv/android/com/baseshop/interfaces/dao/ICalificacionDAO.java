@@ -2,7 +2,7 @@ package dv.android.com.baseshop.interfaces.dao;
 
 import java.util.List;
 
-import dv.android.com.baseshop.dto.CalificacionDTO;
+import dv.android.com.baseshop.entities.CalificacionDTO;
 
 public interface ICalificacionDAO {
     CalificacionDTO findByPk(CalificacionDTO entity)throws Exception;

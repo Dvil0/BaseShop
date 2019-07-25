@@ -1,4 +1,4 @@
-package dv.android.com.baseshop.dto;
+package dv.android.com.baseshop.entities;
 
 public class ChatDTO {
     private String idChat;
