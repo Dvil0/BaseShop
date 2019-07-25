@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">BaseShop</string>
+    <string name="registro_usuario_titulo">Informacion basica</string>
+    <string name="registro_usuario_txtCedula">Cedula</string>
+
+    <!--LABELS: Board -->
+    <string name="lbl_busqueda">Buscar</string>
+
+    <!--LABELS: Contain -->
+    <string name="lbl_category">Categoria</string>
+    <string name="lbl_product">Producto:</string>
+    <string name="lbl_description">Descripcion:</string>
+    <string name="lbl_valor">Valor:</string>
+
+    <!--LABELS: Product -->
+    <string name="lbl_vendedor">Vendedor:</string>
+    <string name="lbl_estado">Estado:</string>
+    <string name="lbl_adicionar">Adicionar</string>
+
 </resources>

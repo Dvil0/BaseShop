@@ -1,6 +1,5 @@
 package dv.android.com.baseshop.dao;
 
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
@@ -30,12 +29,12 @@ public class MensajeDAO implements IMensajesDAO {
             ValueEventListener valueEventListener = databaseReference.addValueEventListener(
                     new ValueEventListener() {
                         @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        public void onDataChange(DataSnapshot dataSnapshot) {
                             list.add(dataSnapshot.getValue(MensajeDTO.class));
                         }
 
                         @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                        public void onCancelled(DatabaseError databaseError) {
                             Log.e("Error:","MensajeDAO.findByPk.causa: "+databaseError.getMessage());
                         }
                     }
@@ -63,14 +62,14 @@ public class MensajeDAO implements IMensajesDAO {
             ValueEventListener valueEventListener = databaseReference.addValueEventListener(
                     new ValueEventListener() {
                         @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        public void onDataChange(DataSnapshot dataSnapshot) {
                             for(DataSnapshot obj: dataSnapshot.getChildren()){
                                 dataList.add(obj.getValue(MensajeDTO.class));
                             }
                         }
 
                         @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                        public void onCancelled(DatabaseError databaseError) {
                             Log.e("Error:","MensajeDAO.findByCriteria.causa: "+databaseError.getMessage());
                         }
                     }

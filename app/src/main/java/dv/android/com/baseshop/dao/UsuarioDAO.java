@@ -1,6 +1,5 @@
 package dv.android.com.baseshop.dao;
 
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
@@ -30,13 +29,13 @@ public class UsuarioDAO implements IUsuarioDAO {
             ValueEventListener valueEventListener = databaseReference.addValueEventListener(
                     new ValueEventListener() {
                         @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        public void onDataChange(DataSnapshot dataSnapshot) {
                            //filter = dataSnapshot.getValue(UsuarioDTO.class);
                            list.add(dataSnapshot.getValue(UsuarioDTO.class));
                         }
 
                         @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                        public void onCancelled(DatabaseError databaseError) {
                             Log.e("Error:","UsuarioDTO.findByPk.causa: "+databaseError.getMessage());
                         }
                     }
@@ -88,14 +87,14 @@ public class UsuarioDAO implements IUsuarioDAO {
             ValueEventListener valueEventListener = databaseReference.addValueEventListener(
                     new ValueEventListener() {
                         @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        public void onDataChange(DataSnapshot dataSnapshot) {
                             for(DataSnapshot obj: dataSnapshot.getChildren()){
                                 dataList.add(obj.getValue(UsuarioDTO.class));
                             }
                         }
 
                         @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                        public void onCancelled(DatabaseError databaseError) {
                             Log.e("Error","UsuarioDAO.findByCriteria.causa: "+databaseError.getMessage());
                         }
                     }
