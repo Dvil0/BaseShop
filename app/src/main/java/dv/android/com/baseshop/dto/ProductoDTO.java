@@ -1,11 +1,15 @@
 package dv.android.com.baseshop.dto;
 
-public class ProductoDTO {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class ProductoDTO implements Serializable {
     private Long idProducto;
     private String nombre;
     private String descripcion;
     private Long idTipoProducto;
     private String estado;
+    private Long precio;
     private String usuarioCrea;
     private String fechaCreacion;
 
@@ -64,5 +68,13 @@ public class ProductoDTO {
 
     public void setFechaCreacion(String fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
+    }
+
+    public Long getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Long precio) {
+        this.precio = precio;
     }
 }

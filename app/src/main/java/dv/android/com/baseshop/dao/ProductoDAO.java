@@ -1,6 +1,5 @@
 package dv.android.com.baseshop.dao;
 
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
@@ -14,6 +13,7 @@ import java.util.List;
 
 import dv.android.com.baseshop.dto.ProductoDTO;
 import dv.android.com.baseshop.interfaces.dao.IProductoDAO;
+import dv.android.com.baseshop.interfaces.listeners.IOnBoardListener;
 
 public class ProductoDAO implements IProductoDAO {
     @Override
@@ -30,12 +30,12 @@ public class ProductoDAO implements IProductoDAO {
             ValueEventListener valueEventListener = databaseReference.addValueEventListener(
                     new ValueEventListener() {
                         @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        public void onDataChange(DataSnapshot dataSnapshot) {
                             list.add(dataSnapshot.getValue(ProductoDTO.class));
                         }
 
                         @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                        public void onCancelled(DatabaseError databaseError) {
                             Log.e("Error:","ProductoDAO.findByPk.causa: "+databaseError.getMessage());
                         }
                     }
@@ -87,14 +87,14 @@ public class ProductoDAO implements IProductoDAO {
             ValueEventListener valueEventListener = databaseReference.addValueEventListener(
                     new ValueEventListener() {
                         @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        public void onDataChange(DataSnapshot dataSnapshot) {
                             for(DataSnapshot obj: dataSnapshot.getChildren()){
                                 dataList.add(obj.getValue(ProductoDTO.class));
                             }
                         }
 
                         @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                        public void onCancelled(DatabaseError databaseError) {
                             Log.e("Error:","ProductoDAO.findByCriteria.causa: "+databaseError.getMessage());
                         }
                     }
@@ -118,6 +118,47 @@ public class ProductoDAO implements IProductoDAO {
             return filterList;
         }catch (Exception e){
             Log.e("Error:","ProductoDAO.findByCriteria.causa: "+e.getMessage());
+            throw e;
+        }
+    }
+
+    @Override
+    public List<ProductoDTO> findByAll(final IOnBoardListener listener) throws Exception {
+        final List<ProductoDTO> list = new ArrayList<>();
+
+        try{
+            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+            DatabaseReference databaseReference = firebaseDatabase.getReference("Producto");
+
+            ValueEventListener valueEventListener = databaseReference.addValueEventListener(
+                    new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            list.clear();
+
+                            for(DataSnapshot obj : dataSnapshot.getChildren()){
+                                ProductoDTO filter = obj.getValue(ProductoDTO.class);
+                                list.add(filter);
+
+
+                            }
+
+                            if(list!=null && !list.isEmpty()){
+                                listener.setItemsProductsFragment(list);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            Log.e("Error:","ProductoDAO.findByAll.causa: "+databaseError.getMessage());
+                        }
+                    }
+            );
+
+            return list;
+
+        }catch (Exception e){
+            Log.e("Error:","ProductoDAO.findByAll.causa: "+e.getMessage());
             throw e;
         }
     }

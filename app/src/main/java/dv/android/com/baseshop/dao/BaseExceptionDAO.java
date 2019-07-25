@@ -1,5 +1,6 @@
 package dv.android.com.baseshop.dao;
 
+import android.content.Context;
 import android.util.Log;
 
 import dv.android.com.baseshop.interfaces.dao.IBaseExceptionDAO;
