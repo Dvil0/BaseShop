@@ -1,5 +1,7 @@
 package dv.android.com.baseshop.interfaces.presenters;
 
+import java.util.List;
+
 import dv.android.com.baseshop.entities.ProductoDTO;
 import dv.android.com.baseshop.entities.UsuarioDTO;
 import dv.android.com.baseshop.interfaces.listeners.IOnProductListener;
@@ -20,4 +22,5 @@ public interface IProductPresenter {
      * @author Dv
      */
     String getTelImei();
+    void findImagenProducto(List<ProductoDTO> productos);
 }

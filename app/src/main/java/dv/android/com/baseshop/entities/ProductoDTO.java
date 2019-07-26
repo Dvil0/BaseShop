@@ -1,5 +1,7 @@
 package dv.android.com.baseshop.entities;
 
+import android.graphics.Bitmap;
+
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
@@ -12,6 +14,7 @@ public class ProductoDTO implements Serializable {
     private Long precio;
     private String usuarioCrea;
     private String fechaCreacion;
+    private transient Bitmap photo;
 
 //Getter and Setter Methods.
     public Long getIdProducto() {
@@ -76,5 +79,13 @@ public class ProductoDTO implements Serializable {
 
     public void setPrecio(Long precio) {
         this.precio = precio;
+    }
+
+    public Bitmap getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Bitmap photo) {
+        this.photo = photo;
     }
 }

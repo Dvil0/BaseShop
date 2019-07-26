@@ -7,4 +7,5 @@ public interface IProductActivity {
     void errorMessage(String message);
     void goBack(View view);
     String getTelImei();
+    void setPhoto();
 }

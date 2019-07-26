@@ -1,5 +1,7 @@
 package dv.android.com.baseshop.interfaces.listeners;
 
+import android.graphics.Bitmap;
+
 import java.util.List;
 
 import dv.android.com.baseshop.entities.ProductoDTO;
@@ -10,4 +12,5 @@ public interface IOnBoardListener {
     void setItemsProductsFragment(List<ProductoDTO> productos);
     void setCarritoNoData();
     void setCarridoData();
+    void setPhoto();
 }

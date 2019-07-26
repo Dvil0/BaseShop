@@ -6,4 +6,5 @@ public interface IOnProductListener {
     void sucessMessage(String message);
     void errorMessage(String message);
     String getTelImei();
+    void setPhoto();
 }

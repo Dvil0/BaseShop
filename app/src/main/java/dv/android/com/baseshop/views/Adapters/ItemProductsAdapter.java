@@ -3,6 +3,7 @@ package dv.android.com.baseshop.views.Adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -41,6 +42,7 @@ public class ItemProductsAdapter extends RecyclerView.Adapter<ItemProductsAdapte
             holder.txtNombreProducto.setText(productoList.get(position).getNombre());
             holder.txtDescripcion.setText(productoList.get(position).getDescripcion());
             holder.txtValor.setText(decimal);
+            holder.imgProduct.setImageBitmap(productoList.get(position).getPhoto());
         }
     }
 
@@ -54,6 +56,7 @@ public class ItemProductsAdapter extends RecyclerView.Adapter<ItemProductsAdapte
         private TextView txtNombreProducto;
         private TextView txtDescripcion;
         private TextView txtValor;
+        private ImageView imgProduct;
 
         public ViewHolderDatos(@NonNull View itemView) {
             super(itemView);
@@ -61,6 +64,7 @@ public class ItemProductsAdapter extends RecyclerView.Adapter<ItemProductsAdapte
             txtNombreProducto = itemView.findViewById(R.id.txtNombreProducto);
             txtDescripcion = itemView.findViewById(R.id.txtDescripcion);
             txtValor = itemView.findViewById(R.id.txtValor);
+            imgProduct = itemView.findViewById(R.id.imgProduct);
         }
     }
 

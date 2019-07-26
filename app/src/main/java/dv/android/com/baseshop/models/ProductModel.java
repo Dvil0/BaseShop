@@ -5,6 +5,7 @@ import android.util.Log;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import dv.android.com.baseshop.R;
 import dv.android.com.baseshop.dao.BaseExceptionDAO;
@@ -70,6 +71,30 @@ public class ProductModel implements IProductModel {
             throw  e;
         }catch (Exception e){
             Log.e("Error:","ProductModel.addToCar.causa: "+e.getMessage());
+            throw e;
+        }
+    }
+
+    @Override
+    public void findImagenProducto(List<ProductoDTO> productos, final IOnProductListener listener) throws Exception {
+
+        try{
+
+            if(productos==null || productos.isEmpty()){
+                throw new BaseException(baseExcepcionDao.getMessage(R.string.ws005), null);
+            }
+
+            for(ProductoDTO producto : productos) {
+
+                //Se consulta la imagen del producto.
+                productoDAO.findImagenProducto(producto, listener);
+            }
+
+        }catch (BaseException e){
+            Log.e("Error:","ProductModel.findImagenProducto.causa: "+e.getMessage());
+            throw  e;
+        }catch (Exception e){
+            Log.e("Error:","ProductModel.findImagenProducto.causa: "+e.getMessage());
             throw e;
         }
     }

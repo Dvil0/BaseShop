@@ -1,5 +1,7 @@
 package dv.android.com.baseshop.interfaces.views;
 
+import android.view.View;
+
 import java.util.List;
 
 import dv.android.com.baseshop.entities.CompraDTO;
@@ -11,5 +13,7 @@ public interface ICompraActivity {
     void setCarritoCompras(List<CompraDTO> compras);
     String getTelImei();
     void setItemsProductsFragment(List<ProductoDTO> productos);
-    public void setPrecioTotal(String precioTotal);
+    void setPrecioTotal(String precioTotal);
+    void goBack(View view);
+    void setPhoto();
 }

@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.util.List;
 
+import dv.android.com.baseshop.R;
 import dv.android.com.baseshop.entities.CompraDTO;
 import dv.android.com.baseshop.entities.ProductoDTO;
 import dv.android.com.baseshop.exception.BaseException;
@@ -12,6 +13,7 @@ import dv.android.com.baseshop.interfaces.models.ICompraModel;
 import dv.android.com.baseshop.interfaces.presenters.ICompraPresenter;
 import dv.android.com.baseshop.interfaces.views.ICompraActivity;
 import dv.android.com.baseshop.models.CompraModel;
+import dv.android.com.baseshop.utils.AppContext;
 
 public class CompraPresenter implements ICompraPresenter,
         IOnCompraListener {
@@ -105,6 +107,44 @@ public class CompraPresenter implements ICompraPresenter,
     public void setPrecioTotal(String precioTotal) {
         if(compraView!=null){
             compraView.setPrecioTotal(precioTotal);
+        }
+    }
+
+    @Override
+    public void buyCar(List<CompraDTO> compras) {
+
+        try{
+            if(compraView!=null){
+
+                compraModel.buyCar(compras, this);
+                compraView.sucessMessage(AppContext.context.getString(R.string.msg_compra_exitosa));
+                compraView.goBack(null);
+            }
+        }catch (BaseException e){
+            Log.e("ERROR:","CompraPresenter.buyCar.causa: "+e.getMessage());
+            compraView.errorMessage(e.getMessage());
+        }catch (Exception e){
+            Log.e("ERROR:","CompraPresenter.buyCar.causa: "+e.getMessage());
+        }
+    }
+
+    @Override
+    public void setPhoto() {
+        if(compraView!=null){
+            compraView.setPhoto();
+        }
+    }
+
+    @Override
+    public void findImagenProducto(List<ProductoDTO> productos) {
+        try {
+            if (compraView != null) {
+                compraModel.findImagenProducto(productos, this);
+            }
+        }catch (BaseException e){
+            Log.e("ERROR:","CompraPresenter.findImagenProducto.causa: "+e.getMessage());
+        }catch (Exception e){
+            Log.e("ERROR:","CompraPresenter.findImagenProducto.causa: "+e.getMessage());
         }
     }
 }

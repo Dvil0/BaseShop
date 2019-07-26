@@ -1,5 +1,7 @@
 package dv.android.com.baseshop.interfaces.views;
 
+import android.graphics.Bitmap;
+
 import java.util.List;
 
 import dv.android.com.baseshop.entities.ProductoDTO;
@@ -12,5 +14,6 @@ public interface IBoardActivity {
     void setCarritoNoData();
     void setCarritoData();
     String getTelImei();
+    void setPhoto();
 
 }

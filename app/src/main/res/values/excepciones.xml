@@ -7,4 +7,5 @@
     <string name="ws002">No se puede adicionar si no esta disponible el producto.</string>
     <string name="ws003">No esta disponible el id del dispositivo para consultar el carrito.</string>
     <string name="ws004">No se encontraron compras para realizar.</string>
+    <string name="ws005">No existen productos a consultar.</string>
 </resources>

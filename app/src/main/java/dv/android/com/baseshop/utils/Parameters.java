@@ -8,6 +8,13 @@ public class Parameters {
     public static final String YES = "Y";
     public static final String NO = "N";
 
+    //Datos de conexion a dataStore Firebase.
+    public static final String URL_DATA_STORAGE = "gs://shopapp-db.appspot.com/";
+    public static final String CARPETA_PRODUCTOS = "productosShopWay/";
+    public static final String EXTENSION_JPEG = ".jpeg";
+    public static final String EXTENSION_JPG = ".jpg";
+
+
     /**
      * Enum de la tabla Parametro
      */

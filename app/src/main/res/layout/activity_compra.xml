@@ -63,6 +63,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorOrange"
         android:text="@string/lbl_comprar"
-        android:layout_gravity="bottom"/>
+        android:layout_gravity="bottom"
+        android:onClick="buyCar"/>
 
 </LinearLayout>

@@ -1,5 +1,6 @@
 package dv.android.com.baseshop.presenters;
 
+import android.graphics.Bitmap;
 import android.util.Log;
 
 import java.util.List;
@@ -97,4 +98,24 @@ public class BoardPresenter implements IBoardPresenter, IOnBoardListener {
         }
     }
 
+    @Override
+    public void findImagenProducto(List<ProductoDTO> productos) {
+        try {
+            if (boardView != null) {
+                boardModel.findImagenProducto(productos, this);
+            }
+        }catch (BaseException e){
+            Log.e("ERROR:","BoardPresenter.findImagenProducto.causa: "+e.getMessage());
+            boardView.errorMessage(e.getMessage());
+        }catch (Exception e){
+            Log.e("ERROR:","BoardPresenter.findImagenProducto.causa: "+e.getMessage());
+        }
+    }
+
+    @Override
+    public void setPhoto() {
+        if(boardView!=null){
+            boardView.setPhoto();
+        }
+    }
 }

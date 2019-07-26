@@ -11,4 +11,5 @@ public interface IOnCompraListener {
     void setCarritoCompras(List<CompraDTO> compras);
     void setItemsProductsFragment(List<ProductoDTO> productos);
     void setPrecioTotal(String precioTotal);
+    void setPhoto();
 }

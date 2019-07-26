@@ -1,13 +1,20 @@
 package dv.android.com.baseshop.dao;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +22,8 @@ import dv.android.com.baseshop.entities.ProductoDTO;
 import dv.android.com.baseshop.interfaces.dao.IProductoDAO;
 import dv.android.com.baseshop.interfaces.listeners.IOnBoardListener;
 import dv.android.com.baseshop.interfaces.listeners.IOnCompraListener;
+import dv.android.com.baseshop.interfaces.listeners.IOnProductListener;
+import dv.android.com.baseshop.utils.Parameters;
 
 public class ProductoDAO implements IProductoDAO {
     @Override
@@ -208,4 +217,128 @@ public class ProductoDAO implements IProductoDAO {
             throw e;
         }
     }
+
+    @Override
+    public void findImagenProducto(final ProductoDTO producto, final IOnBoardListener listener) throws Exception {
+        long size = 2048*2048;
+
+        try {
+            FirebaseStorage firebaseStorage = FirebaseStorage
+                    .getInstance(Parameters.URL_DATA_STORAGE);
+
+            StorageReference storageReference = firebaseStorage.getReference();
+
+            //Valida las extensiones de los productos.
+            StorageReference store = storageReference
+                        .child(Parameters.CARPETA_PRODUCTOS + producto.getIdProducto() + Parameters.EXTENSION_JPG);
+
+
+            store.getBytes(size).addOnSuccessListener(
+                    new OnSuccessListener<byte[]>() {
+                        @Override
+                        public void onSuccess(byte[] bytes) {
+                            Bitmap photo = BitmapFactory
+                                    .decodeByteArray(bytes, 0, bytes.length);
+
+                            producto.setPhoto(photo);
+                            listener.setPhoto();
+                        }
+                    }
+            ).addOnFailureListener(
+                    new OnFailureListener() {
+                        @Override
+                        public void onFailure(Exception e) {
+                            Log.e("Error:","ProductoDAO.findImagenProducto.causa: "+e.getMessage());
+                        }
+                    }
+            );
+
+        }catch (Exception e){
+            Log.e("Error:","ProductoDAO.findImagenProducto.causa: "+e.getMessage());
+            throw e;
+        }
+    }
+
+    @Override
+    public void findImagenProducto(final ProductoDTO producto, final IOnProductListener listener) throws Exception {
+        long size = 2048*2048;
+
+        try {
+            FirebaseStorage firebaseStorage = FirebaseStorage
+                    .getInstance(Parameters.URL_DATA_STORAGE);
+
+            StorageReference storageReference = firebaseStorage.getReference();
+
+            //Valida las extensiones de los productos.
+            StorageReference store = storageReference
+                    .child(Parameters.CARPETA_PRODUCTOS + producto.getIdProducto() + Parameters.EXTENSION_JPG);
+
+
+            store.getBytes(size).addOnSuccessListener(
+                    new OnSuccessListener<byte[]>() {
+                        @Override
+                        public void onSuccess(byte[] bytes) {
+                            Bitmap photo = BitmapFactory
+                                    .decodeByteArray(bytes, 0, bytes.length);
+
+                            producto.setPhoto(photo);
+                            listener.setPhoto();
+                        }
+                    }
+            ).addOnFailureListener(
+                    new OnFailureListener() {
+                        @Override
+                        public void onFailure(Exception e) {
+                            Log.e("Error:","ProductoDAO.findImagenProducto.causa: "+e.getMessage());
+                        }
+                    }
+            );
+
+        }catch (Exception e){
+            Log.e("Error:","ProductoDAO.findImagenProducto.causa: "+e.getMessage());
+            throw e;
+        }
+    }
+
+    @Override
+    public void findImagenProducto(final ProductoDTO producto, final IOnCompraListener listener) throws Exception {
+        long size = 2048*2048;
+
+        try {
+            FirebaseStorage firebaseStorage = FirebaseStorage
+                    .getInstance(Parameters.URL_DATA_STORAGE);
+
+            StorageReference storageReference = firebaseStorage.getReference();
+
+            //Valida las extensiones de los productos.
+            StorageReference store = storageReference
+                    .child(Parameters.CARPETA_PRODUCTOS + producto.getIdProducto() + Parameters.EXTENSION_JPG);
+
+
+            store.getBytes(size).addOnSuccessListener(
+                    new OnSuccessListener<byte[]>() {
+                        @Override
+                        public void onSuccess(byte[] bytes) {
+                            Bitmap photo = BitmapFactory
+                                    .decodeByteArray(bytes, 0, bytes.length);
+
+                            producto.setPhoto(photo);
+                            listener.setPhoto();
+                        }
+                    }
+            ).addOnFailureListener(
+                    new OnFailureListener() {
+                        @Override
+                        public void onFailure(Exception e) {
+                            Log.e("Error:","ProductoDAO.findImagenProducto.causa: "+e.getMessage());
+                        }
+                    }
+            );
+
+        }catch (Exception e){
+            Log.e("Error:","ProductoDAO.findImagenProducto.causa: "+e.getMessage());
+            throw e;
+        }
+    }
+
 }

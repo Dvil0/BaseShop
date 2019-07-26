@@ -65,6 +65,7 @@ public class CompraActivity extends AppCompatActivity implements ICompraActivity
      * @param view
      * @author Dv
      */
+    @Override
     public void goBack(View view){
         finish();
     }
@@ -79,7 +80,10 @@ public class CompraActivity extends AppCompatActivity implements ICompraActivity
 
     @Override
     public void setItemsProductsFragment(final List<ProductoDTO> productos) {
-        itemCompraAdapter = new ItemCompraAdapter(productos);
+        //Consulta la photo.
+        setPhotoToProduct(productos);
+
+        itemCompraAdapter = new ItemCompraAdapter(productos, this);
 
         //Se adiciona el adaptador del recyclerView.
         recycler.setAdapter(itemCompraAdapter);
@@ -99,4 +103,21 @@ public class CompraActivity extends AppCompatActivity implements ICompraActivity
         txtPrecioTotal.setText(precioTotal);
     }
 
+    public void buyCar(View view){
+        compraPresenter.buyCar(carritoCompras);
+    }
+
+    /**
+     * Consulta las fotos de los productos.
+     * @param productos
+     * @author Dv
+     */
+    public void setPhotoToProduct(List<ProductoDTO> productos) {
+        compraPresenter.findImagenProducto(productos);
+    }
+
+    @Override
+    public void setPhoto() {
+        itemCompraAdapter.notifyDataSetChanged();
+    }
 }

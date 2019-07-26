@@ -1,5 +1,6 @@
 package dv.android.com.baseshop.models;
 
+import android.graphics.Bitmap;
 import android.util.Log;
 
 import java.util.List;
@@ -72,6 +73,30 @@ public class BoardModel implements IBoardModel {
             throw  e;
         }catch (Exception e){
             Log.e("Error:","BoardModel.validateShowCar.causa: "+e.getMessage());
+            throw e;
+        }
+    }
+
+    @Override
+    public void findImagenProducto(List<ProductoDTO> productos, final IOnBoardListener listener) throws Exception {
+
+        try{
+
+            if(productos==null || productos.isEmpty()){
+                throw new BaseException(baseExcepcionDao.getMessage(R.string.ws005), null);
+            }
+
+            for(ProductoDTO producto : productos) {
+
+                //Se consulta la imagen del producto.
+                productoDao.findImagenProducto(producto, listener);
+            }
+
+        }catch (BaseException e){
+            Log.e("Error:","BoardModel.findImagenProducto.causa: "+e.getMessage());
+            throw  e;
+        }catch (Exception e){
+            Log.e("Error:","BoardModel.findImagenProducto.causa: "+e.getMessage());
             throw e;
         }
     }

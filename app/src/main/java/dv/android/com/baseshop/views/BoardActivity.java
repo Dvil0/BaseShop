@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -76,6 +77,9 @@ public class BoardActivity extends AppCompatActivity implements IBoardActivity,
 
     @Override
     public void setItemsProductsFragment(final List<ProductoDTO> productos) {
+        //Consulta la imagen de los productos.
+        setPhotoToProduct(productos);
+
         itemProductsAdapter = new ItemProductsAdapter(productos);
 
         //Se adiciona una accion a cada registro del recyclerView.
@@ -88,7 +92,12 @@ public class BoardActivity extends AppCompatActivity implements IBoardActivity,
                 //Se muestra el detalle del producto seleccionado.
                 Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
                 intent.putExtra("product",productos.get(fragmentContain.getChildAdapterPosition(v)));
-                startActivity(intent);
+
+                try {
+                    startActivity(intent);
+                }catch (Exception e){
+                    Log.e("ERROR: ",e.getMessage());
+                }
             }
         });
 
@@ -134,6 +143,21 @@ public class BoardActivity extends AppCompatActivity implements IBoardActivity,
         //Se lanza la actividad de compra del carrito.
         Intent intent = new Intent(this, CompraActivity.class);
         startActivity(intent);
+    }
+
+
+    /**
+     * Consulta la imagen de los productos
+     * @param productos
+     * @author Dv
+     */
+    public void setPhotoToProduct(List<ProductoDTO> productos) {
+        boardPresenter.findImagenProducto(productos);
+    }
+
+    @Override
+    public void setPhoto(){
+        itemProductsAdapter.notifyDataSetChanged();
     }
 
     @Override

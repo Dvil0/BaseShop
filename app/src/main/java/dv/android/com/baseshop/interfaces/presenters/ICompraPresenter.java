@@ -12,4 +12,6 @@ public interface ICompraPresenter {
     void findComprasByImei() ;
     void findProductosByIdProducto(List<CompraDTO> compras);
     void calculatePrecioTotal(List<ProductoDTO> productos);
+    void buyCar(List<CompraDTO> compras);
+    void findImagenProducto(List<ProductoDTO> productos);
 }

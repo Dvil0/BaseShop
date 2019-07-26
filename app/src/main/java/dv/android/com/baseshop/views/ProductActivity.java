@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -11,6 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import dv.android.com.baseshop.R;
 import dv.android.com.baseshop.entities.ProductoDTO;
@@ -30,6 +33,7 @@ public class ProductActivity extends AppCompatActivity implements IProductActivi
     private TextView txtVendedor;
     private TextView txtEstado;
     private TextView txtPrecio;
+    private ImageView imgProducto;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,12 +53,18 @@ public class ProductActivity extends AppCompatActivity implements IProductActivi
             txtVendedor = findViewById(R.id.txtUserCrea);
             txtEstado = findViewById(R.id.txtEstado);
             txtPrecio = findViewById(R.id.txtPrecio);
+            imgProducto = findViewById(R.id.imgProducto);
 
             //Asigna la informacion a los campos del activity.
             txtTitle.setText(productSelected.getNombre());
             txtDescription.setText(productSelected.getDescripcion());
             txtVendedor.setText(productSelected.getUsuarioCrea());
             txtEstado.setText(productSelected.getEstado().compareTo(Parameters.DISPONIBLE)==0?"Disponible":"No disponible");
+
+            //Consulta la imagen.
+            List<ProductoDTO> list = new ArrayList<>();
+            list.add(productSelected);
+            productPresenter.findImagenProducto(list);
 
             //Se convierte el formato del precio.
             DecimalFormat format = new DecimalFormat("#,##0");
@@ -98,5 +108,10 @@ public class ProductActivity extends AppCompatActivity implements IProductActivi
         String deviceUniqueId = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
         return deviceUniqueId;
 
+    }
+
+    @Override
+    public void setPhoto() {
+        imgProducto.setImageBitmap(productSelected.getPhoto());
     }
 }

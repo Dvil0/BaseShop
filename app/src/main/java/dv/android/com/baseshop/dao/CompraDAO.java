@@ -15,6 +15,7 @@ import dv.android.com.baseshop.entities.CompraDTO;
 import dv.android.com.baseshop.interfaces.dao.ICompraDAO;
 import dv.android.com.baseshop.interfaces.listeners.IOnBoardListener;
 import dv.android.com.baseshop.interfaces.listeners.IOnCompraListener;
+import dv.android.com.baseshop.utils.Parameters;
 
 public class CompraDAO implements ICompraDAO {
 
@@ -35,7 +36,7 @@ public class CompraDAO implements ICompraDAO {
         try{
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = firebaseDatabase.getReference("Compra");
-            databaseReference.child("compra"+entity.getImei()).removeValue();
+            databaseReference.child("compra"+entity.getImei()+""+entity.getIdProducto()).removeValue();
         }catch (Exception e){
             Log.e("Error","CompraDAO.delete.causa: "+e.getMessage());
             throw e;
@@ -144,7 +145,11 @@ public class CompraDAO implements ICompraDAO {
 
                             for (DataSnapshot obj : dataSnapshot.getChildren()){
                                 CompraDTO filter = obj.getValue(CompraDTO.class);
-                                list.add(filter);
+
+                                //Valida de que aun no se haya comprado.
+                                if(filter.getComprado().compareTo(Parameters.NO)==0) {
+                                    list.add(filter);
+                                }
                             }
 
                             if(list!=null && !list.isEmpty()){
@@ -185,7 +190,11 @@ public class CompraDAO implements ICompraDAO {
 
                             for (DataSnapshot obj : dataSnapshot.getChildren()){
                                 CompraDTO filter = obj.getValue(CompraDTO.class);
-                                list.add(filter);
+
+                                //Valida de que aun no se haya comprado.
+                                if(filter.getComprado().compareTo(Parameters.NO)==0) {
+                                    list.add(filter);
+                                }
                             }
 
                             if(list!=null && !list.isEmpty()){

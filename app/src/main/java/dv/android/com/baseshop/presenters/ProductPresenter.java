@@ -2,6 +2,8 @@ package dv.android.com.baseshop.presenters;
 
 import android.util.Log;
 
+import java.util.List;
+
 import dv.android.com.baseshop.R;
 import dv.android.com.baseshop.entities.ProductoDTO;
 import dv.android.com.baseshop.entities.UsuarioDTO;
@@ -64,5 +66,26 @@ public class ProductPresenter implements IProductPresenter,
         }
 
         return imei;
+    }
+
+    @Override
+    public void findImagenProducto(List<ProductoDTO> productos) {
+        try {
+            if (productView != null) {
+                productModel.findImagenProducto(productos, this);
+            }
+        }catch (BaseException e){
+            Log.e("ERROR:","ProductPresenter.findImagenProducto.causa: "+e.getMessage());
+            productView.errorMessage(e.getMessage());
+        }catch (Exception e){
+            Log.e("ERROR:","ProductPresenter.findImagenProducto.causa: "+e.getMessage());
+        }
+    }
+
+    @Override
+    public void setPhoto() {
+        if(productView!=null){
+            productView.setPhoto();
+        }
     }
 }

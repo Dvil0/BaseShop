@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BaseShop</string>
+    <string name="app_name">ShopWay</string>
     <string name="registro_usuario_titulo">Informacion basica</string>
     <string name="registro_usuario_txtCedula">Cedula</string>
 
@@ -25,5 +25,7 @@
     <!-- MESSAGES: -->
     <string name="msg_add_carrito">Se guardo el producto en el carrito.</string>
     <string name="msg_car_empty">No existen productos en el carrito.</string>
+    <string name="msg_delete_compra">Se elimino el producto satisfactoriamente.</string>
+    <string name="msg_compra_exitosa">Se realizo la compra exitosamente.</string>
 
 </resources>

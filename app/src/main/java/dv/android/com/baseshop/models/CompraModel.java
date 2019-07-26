@@ -18,6 +18,7 @@ import dv.android.com.baseshop.interfaces.dao.ICompraDAO;
 import dv.android.com.baseshop.interfaces.dao.IProductoDAO;
 import dv.android.com.baseshop.interfaces.listeners.IOnCompraListener;
 import dv.android.com.baseshop.interfaces.models.ICompraModel;
+import dv.android.com.baseshop.utils.Parameters;
 
 public class CompraModel implements ICompraModel {
 
@@ -116,6 +117,54 @@ public class CompraModel implements ICompraModel {
             throw  e;
         }catch (Exception e){
             Log.e("Error:","CompraModel.findProductosByIdProducto.causa: "+e.getMessage());
+            throw e;
+        }
+    }
+
+    @Override
+    public void buyCar(List<CompraDTO> compras, IOnCompraListener listener) throws Exception {
+        try{
+            //Valida que la lista de compras no este vacia.
+            if (compras == null || compras.isEmpty()) {
+                throw new BaseException(baseExcepcionDao.getMessage(R.string.ws004), null);
+            }
+
+            //Se actualiza el estado de la compra.
+            for (CompraDTO compra : compras){
+                compra.setComprado(Parameters.YES);
+
+                compraDAO.save(compra);
+            }
+
+        }catch (BaseException e){
+            Log.e("Error:","CompraModel.buyCar.causa: "+e.getMessage());
+            throw  e;
+        }catch (Exception e){
+            Log.e("Error:","CompraModel.buyCar.causa: "+e.getMessage());
+            throw e;
+        }
+    }
+
+    @Override
+    public void findImagenProducto(List<ProductoDTO> productos, final IOnCompraListener listener) throws Exception {
+
+        try{
+
+            if(productos==null || productos.isEmpty()){
+                throw new BaseException(baseExcepcionDao.getMessage(R.string.ws005), null);
+            }
+
+            for(ProductoDTO producto : productos) {
+
+                //Se consulta la imagen del producto.
+                productoDao.findImagenProducto(producto, listener);
+            }
+
+        }catch (BaseException e){
+            Log.e("Error:","CompraModel.findImagenProducto.causa: "+e.getMessage());
+            throw  e;
+        }catch (Exception e){
+            Log.e("Error:","CompraModel.findImagenProducto.causa: "+e.getMessage());
             throw e;
         }
     }
