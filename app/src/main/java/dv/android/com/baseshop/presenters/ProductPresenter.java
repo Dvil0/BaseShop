@@ -2,6 +2,7 @@ package dv.android.com.baseshop.presenters;
 
 import android.util.Log;
 
+import dv.android.com.baseshop.R;
 import dv.android.com.baseshop.entities.ProductoDTO;
 import dv.android.com.baseshop.entities.UsuarioDTO;
 import dv.android.com.baseshop.exception.BaseException;
@@ -10,6 +11,7 @@ import dv.android.com.baseshop.interfaces.models.IProductModel;
 import dv.android.com.baseshop.interfaces.presenters.IProductPresenter;
 import dv.android.com.baseshop.interfaces.views.IProductActivity;
 import dv.android.com.baseshop.models.ProductModel;
+import dv.android.com.baseshop.utils.AppContext;
 
 public class ProductPresenter implements IProductPresenter,
         IOnProductListener{
@@ -27,6 +29,9 @@ public class ProductPresenter implements IProductPresenter,
         try {
             if (productView != null) {
                 productModel.addToCar(producto, usuario, this);
+                productView.sucessMessage(AppContext.context.getString(R.string.msg_add_carrito));
+                productView.goBack(null);
+
             }
         }catch (BaseException e){
             Log.e("ERROR:","ProductPresenter.findByAll.causa: "+e.getMessage());
@@ -55,7 +60,7 @@ public class ProductPresenter implements IProductPresenter,
         String imei = null;
 
         if(productView!=null){
-            productView.getTelImei();
+            imei = productView.getTelImei();
         }
 
         return imei;

@@ -17,4 +17,7 @@
     <string name="lbl_estado">Estado:</string>
     <string name="lbl_adicionar">Adicionar</string>
 
+    <!-- MESSAGES: -->
+    <string name="msg_add_carrito">Se guardo el producto en el carrito.</string>
+
 </resources>

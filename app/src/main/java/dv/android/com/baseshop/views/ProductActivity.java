@@ -95,10 +95,7 @@ public class ProductActivity extends AppCompatActivity implements IProductActivi
 
     @Override
     public String getTelImei() {
-        String deviceUniqueId = null;
-
-        deviceUniqueId = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
-
+        String deviceUniqueId = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
         return deviceUniqueId;
 
     }

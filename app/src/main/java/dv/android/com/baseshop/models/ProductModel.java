@@ -54,7 +54,8 @@ public class ProductModel implements IProductModel {
             }
 
             //Se asigna el IMEI del dispositivo.
-            carrito.setImei(listener.getTelImei());
+            String imei = listener.getTelImei();
+            carrito.setImei(imei);
 
             //Se asigna la fecha actual.
             format = new SimpleDateFormat("dd/MM/yyyy");
@@ -62,6 +63,7 @@ public class ProductModel implements IProductModel {
 
             //Se crea el registro del carrito.
             compraDAO.save(carrito);
+
 
         }catch (BaseException e){
             Log.e("Error:","ProductModel.addToCar.causa: "+e.getMessage());
