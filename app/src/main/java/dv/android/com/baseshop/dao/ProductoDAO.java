@@ -14,6 +14,7 @@ import java.util.List;
 import dv.android.com.baseshop.entities.ProductoDTO;
 import dv.android.com.baseshop.interfaces.dao.IProductoDAO;
 import dv.android.com.baseshop.interfaces.listeners.IOnBoardListener;
+import dv.android.com.baseshop.interfaces.listeners.IOnCompraListener;
 
 public class ProductoDAO implements IProductoDAO {
     @Override
@@ -159,6 +160,51 @@ public class ProductoDAO implements IProductoDAO {
 
         }catch (Exception e){
             Log.e("Error:","ProductoDAO.findByAll.causa: "+e.getMessage());
+            throw e;
+        }
+    }
+
+    @Override
+    public void findProductosByIdProducto(final List<ProductoDTO> entities, final IOnCompraListener listener) throws Exception {
+        final List<ProductoDTO> list = new ArrayList<>();
+
+        try{
+
+            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+            DatabaseReference databaseReference = firebaseDatabase.getReference("Producto");
+
+            ValueEventListener valueEventListener = databaseReference.addValueEventListener(
+                    new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            list.clear();
+
+                            for(DataSnapshot obj : dataSnapshot.getChildren()){
+                                ProductoDTO filter = obj.getValue(ProductoDTO.class);
+
+                                for(ProductoDTO entity: entities){
+
+                                    if(filter.getIdProducto().compareTo(entity.getIdProducto())==0){
+                                        list.add(filter);
+                                    }
+                                }
+
+                            }
+
+                            if(list!=null && !list.isEmpty()){
+                                listener.setItemsProductsFragment(list);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            Log.e("Error:","ProductoDAO.findProductosByIdProducto.causa: "+databaseError.getMessage());
+                        }
+                    }
+            );
+
+        }catch (Exception e){
+            Log.e("Error:","ProductoDAO.findProductosByIdProducto.causa: "+e.getMessage());
             throw e;
         }
     }

@@ -13,6 +13,7 @@ import java.util.List;
 
 import dv.android.com.baseshop.entities.CompraDTO;
 import dv.android.com.baseshop.interfaces.dao.ICompraDAO;
+import dv.android.com.baseshop.interfaces.listeners.IOnBoardListener;
 import dv.android.com.baseshop.interfaces.listeners.IOnCompraListener;
 
 public class CompraDAO implements ICompraDAO {
@@ -22,7 +23,7 @@ public class CompraDAO implements ICompraDAO {
         try{
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = firebaseDatabase.getReference("Compra");
-            databaseReference.child("compra"+entity.getImei()).setValue(entity);
+            databaseReference.child("compra"+entity.getImei()+""+entity.getIdProducto()).setValue(entity);
         }catch (Exception e){
             Log.e("Error:","CompraDAO.save.causa: "+e.getMessage());
             throw e;
@@ -109,10 +110,6 @@ public class CompraDAO implements ICompraDAO {
 
 
                             }
-
-                            if(list!=null && !list.isEmpty()){
-                                listener.setItemsProductsFragment(list);
-                            }
                         }
 
                         @Override
@@ -129,4 +126,83 @@ public class CompraDAO implements ICompraDAO {
             throw e;
         }
     }
+
+    @Override
+    public void findCarritoOnBoardByImei(CompraDTO entity, final IOnBoardListener listener) throws Exception {
+        final List<CompraDTO> list = new ArrayList<>();
+
+        try{
+            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+            DatabaseReference databaseReference = firebaseDatabase.getReference("Compra");
+            databaseReference.orderByChild("imei").equalTo(entity.getImei());
+
+            ValueEventListener valueEventListener = databaseReference.addValueEventListener(
+                    new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            list.clear();
+
+                            for (DataSnapshot obj : dataSnapshot.getChildren()){
+                                CompraDTO filter = obj.getValue(CompraDTO.class);
+                                list.add(filter);
+                            }
+
+                            if(list!=null && !list.isEmpty()){
+                                listener.setCarridoData();
+                            }
+                            else{
+                                listener.setCarritoNoData();
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            Log.e("Error:","CompraDAO.findCarritoOnBoardByImei.causa: "+databaseError.getMessage());
+                        }
+                    }
+            );
+        }catch (Exception e){
+            Log.e("Error:","CompraDAO.findCarritoOnBoardByImei.causa: "+e.getMessage());
+            throw e;
+        }
+    }
+
+    @Override
+    public void findComprasOnComprasByImei(CompraDTO entity, final IOnCompraListener listener) throws Exception {
+        final List<CompraDTO> list = new ArrayList<>();
+
+        try{
+            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+            DatabaseReference databaseReference = firebaseDatabase.getReference("Compra");
+            databaseReference.orderByChild("imei").equalTo(entity.getImei());
+
+            ValueEventListener valueEventListener = databaseReference.addValueEventListener(
+                    new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            list.clear();
+
+                            for (DataSnapshot obj : dataSnapshot.getChildren()){
+                                CompraDTO filter = obj.getValue(CompraDTO.class);
+                                list.add(filter);
+                            }
+
+                            if(list!=null && !list.isEmpty()){
+                                listener.setCarritoCompras(list);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            Log.e("Error:","CompraDAO.findComprasOnComprasByImei.causa: "+databaseError.getMessage());
+                        }
+                    }
+            );
+        }catch (Exception e){
+            Log.e("Error:","CompraDAO.findComprasOnComprasByImei.causa: "+e.getMessage());
+            throw e;
+        }
+    }
+
 }

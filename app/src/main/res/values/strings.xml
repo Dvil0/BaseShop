@@ -17,7 +17,13 @@
     <string name="lbl_estado">Estado:</string>
     <string name="lbl_adicionar">Adicionar</string>
 
+    <!--LABELS: Compra -->
+    <string name="lbl_titulo">Carrito de Compras</string>
+    <string name="lbl_precioTotal">Precio total:</string>
+    <string name="lbl_comprar">Comprar</string>
+
     <!-- MESSAGES: -->
     <string name="msg_add_carrito">Se guardo el producto en el carrito.</string>
+    <string name="msg_car_empty">No existen productos en el carrito.</string>
 
 </resources>

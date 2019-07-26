@@ -7,4 +7,5 @@ import dv.android.com.baseshop.interfaces.listeners.IOnBoardListener;
 
 public interface IBoardModel {
     List<ProductoDTO> findByAll(final IOnBoardListener listener) throws Exception;
+    void validateShowCar(String imei, IOnBoardListener listener) throws Exception;
 }

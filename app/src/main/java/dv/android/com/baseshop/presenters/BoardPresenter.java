@@ -42,6 +42,25 @@ public class BoardPresenter implements IBoardPresenter, IOnBoardListener {
         return productos;
     }
 
+    @Override
+    public void validateShowCar() {
+        String imei = null;
+
+        try{
+            if(boardView!=null){
+                //Consulta el imei del dispositivo para la consulta.
+                imei = boardView.getTelImei();
+
+                //Si tiene datos en el carrito valida que icono mostrar.
+                boardModel.validateShowCar(imei, this);
+            }
+        }catch (BaseException e){
+            Log.e("ERROR:","BoardPresenter.validateShowCar.causa: "+e.getMessage());
+            boardView.errorMessage(e.getMessage());
+        }catch (Exception e){
+            Log.e("ERROR:","BoardPresenter.validateShowCar.causa: "+e.getMessage());
+        }
+    }
 
     @Override
     public void sucessMessage(String message) {
@@ -63,4 +82,19 @@ public class BoardPresenter implements IBoardPresenter, IOnBoardListener {
             boardView.setItemsProductsFragment(productos);
         }
     }
+
+    @Override
+    public void setCarritoNoData() {
+        if(boardView!=null){
+            boardView.setCarritoNoData();
+        }
+    }
+
+    @Override
+    public void setCarridoData() {
+        if(boardView!=null){
+            boardView.setCarritoData();
+        }
+    }
+
 }

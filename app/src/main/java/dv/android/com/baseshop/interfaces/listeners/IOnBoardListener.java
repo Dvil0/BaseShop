@@ -8,4 +8,6 @@ public interface IOnBoardListener {
     void sucessMessage(String message);
     void errorMessage(String message);
     void setItemsProductsFragment(List<ProductoDTO> productos);
+    void setCarritoNoData();
+    void setCarridoData();
 }

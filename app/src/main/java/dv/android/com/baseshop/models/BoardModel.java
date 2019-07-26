@@ -6,10 +6,13 @@ import java.util.List;
 
 import dv.android.com.baseshop.R;
 import dv.android.com.baseshop.dao.BaseExceptionDAO;
+import dv.android.com.baseshop.dao.CompraDAO;
 import dv.android.com.baseshop.dao.ProductoDAO;
+import dv.android.com.baseshop.entities.CompraDTO;
 import dv.android.com.baseshop.entities.ProductoDTO;
 import dv.android.com.baseshop.exception.BaseException;
 import dv.android.com.baseshop.interfaces.dao.IBaseExceptionDAO;
+import dv.android.com.baseshop.interfaces.dao.ICompraDAO;
 import dv.android.com.baseshop.interfaces.dao.IProductoDAO;
 import dv.android.com.baseshop.interfaces.listeners.IOnBoardListener;
 import dv.android.com.baseshop.interfaces.models.IBoardModel;
@@ -18,10 +21,12 @@ public class BoardModel implements IBoardModel {
 
     private IProductoDAO productoDao;
     private IBaseExceptionDAO baseExcepcionDao;
+    private ICompraDAO compraDAO;
 
     public BoardModel(){
         productoDao = new ProductoDAO();
         baseExcepcionDao = new BaseExceptionDAO();
+        compraDAO = new CompraDAO();
     }
 
     @Override
@@ -42,6 +47,31 @@ public class BoardModel implements IBoardModel {
             throw  e;
         }catch (Exception e){
             Log.e("Error:","BoardModel.findByAll.causa: "+e.getMessage());
+            throw e;
+        }
+    }
+
+    @Override
+    public void validateShowCar(String imei, IOnBoardListener listener) throws Exception {
+        CompraDTO filter = null;
+        List<CompraDTO> list = null;
+
+        try{
+            //Valida que el imei no este vacio.
+            if(imei==null || imei.trim().compareTo("")==0){
+                throw new BaseException(baseExcepcionDao.getMessage(R.string.ws003), null);
+            }
+
+            filter = new CompraDTO();
+            filter.setImei(imei);
+
+            compraDAO.findCarritoOnBoardByImei(filter, listener);
+
+        }catch (BaseException e){
+            Log.e("Error:","BoardModel.validateShowCar.causa: "+e.getMessage());
+            throw  e;
+        }catch (Exception e){
+            Log.e("Error:","BoardModel.validateShowCar.causa: "+e.getMessage());
             throw e;
         }
     }

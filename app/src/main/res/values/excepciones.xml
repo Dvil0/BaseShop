@@ -5,6 +5,6 @@
     <string name="base02">Error de prueba</string>
     <string name="ws001">No se encontraron productos para mostrar.</string>
     <string name="ws002">No se puede adicionar si no esta disponible el producto.</string>
-
-
+    <string name="ws003">No esta disponible el id del dispositivo para consultar el carrito.</string>
+    <string name="ws004">No se encontraron compras para realizar.</string>
 </resources>

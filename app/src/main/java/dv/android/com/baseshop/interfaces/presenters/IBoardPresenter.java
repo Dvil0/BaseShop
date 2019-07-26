@@ -6,4 +6,5 @@ import dv.android.com.baseshop.entities.ProductoDTO;
 
 public interface IBoardPresenter {
     List<ProductoDTO> findByAll();
+    void validateShowCar();
 }
